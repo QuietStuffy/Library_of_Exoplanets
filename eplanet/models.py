@@ -1,0 +1,21 @@
+from django.db import models
+
+class Exoplanets(models.Model):
+    name = models.CharField(max_length=100)
+    tofp = models.CharField(max_length=100)
+    mass_jpt = models.CharField(max_length=100)
+    radius_jpt = models.CharField(max_length=100)
+    period_days = models.CharField(max_length=100)
+    semi_major_axis = models.CharField(max_length=100)
+    eccentricity = models.CharField(max_length=100)
+    surface_temp_K = models.CharField(max_length=100)
+    discovery_method = models.CharField(max_length=100)
+    discovery_year = models.CharField(max_length=100)
+    right_ascension = models.CharField(max_length=100)
+    declination = models.CharField(max_length=100)
+    distance_from_star = models.CharField(max_length=100)
+    mass_star_slr = models.CharField(max_length=100)
+    radious_star_slr = models.CharField(max_length=100)
+    metallicity_star = models.CharField(max_length=100)
+    tempK_star = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)

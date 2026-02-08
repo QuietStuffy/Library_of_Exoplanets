@@ -1,0 +1,55 @@
+{% extends 'eplanet/layout.html' %}
+{% load static %}
+
+{% block title %}Экзопланеты{% endblock %}
+
+{% block extra_head %}
+    {% if time == 1 %}
+        <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    {% elif time == 0 %}
+        <link rel="stylesheet" href="{% static 'eplanet/css/style.css' %}">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<header>
+    <div>
+        <h1 class="title">Woep</h1>
+    </div>
+    <a href="{% url 'home' %}" class="button">Главная</a>
+    <a href="{% url 'planets' %}" class="button">Экзопланеты</a>
+    <div></div>
+</header>
+
+<main class="container">
+    <h1>Экзопланеты</h1>
+
+    <div class="planet-grid">
+        {% for elem in planets %}
+        <div class="planet-card">
+            <h4>{{ elem.name }}</h4>
+            <p><b>Тип:</b> {{ elem.tofp }}</p>
+            <p><b>Масса:</b> {{ elem.mass_jpt }}</p>
+            <p><b>Радиус:</b> {{ elem.radius_jpt }}</p>
+            <p><b>Температура на поверхности:</b> {{ elem.surface_temp_K }}</p>
+            <p><b>Метод исследования:</b> {{ elem.discovery_method }}</p>
+            <p><b>Год открытия:</b> {{ elem.discovery_year }}</p>
+            <p><b>Расстояние до звезды:</b> {{ elem.distance_from_star }}</p>
+            <p><b>Масса звезды:</b> {{ elem.mass_star_slr }}</p>
+            <p><b>Радиус звезды:</b> {{ elem.radius_star_slr }}</p>
+            <p><b>Температура звезды:</b> {{ elem.tempK_star }}</p>
+            <p><b>Статус:</b> {{ elem.status }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+<footer>
+    <div>
+        <ul>
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="{% url 'planets' %}">Экзопланеты</a></li>
+        </ul>
+    </div>
+</footer>
+{% endblock %}
