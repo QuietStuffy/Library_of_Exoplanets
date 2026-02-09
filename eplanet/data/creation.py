@@ -1,7 +1,12 @@
 import os
 import django
+import sys
 
-# Настройка Django
+
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, project_root)
+
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Exoplanets_project.settings')
 django.setup()
 
@@ -12,7 +17,9 @@ import pandas as pd
 
 
 def create_data():
-    df = pd.read_csv("oec.csv")
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_file = os.path.join(current_dir, "oec.csv")
+    df = pd.read_csv(csv_file)
     for i in range(3584):
         name = df["PlanetIdentifier"][i]
         tofp = df["TypeFlag"][i]
@@ -40,4 +47,6 @@ def create_data():
                             radious_star_slr=radious_star_slr, metallicity_star=metallicity_star,
                             tempK_star=tempK_star, status=status)
         planet.save()
-create_data()
+    print(f"Загружено {len(df)} записей")
+if __name__ == "__main__":
+    create_data()
