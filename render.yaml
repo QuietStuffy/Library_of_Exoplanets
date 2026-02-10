@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: exoplanets-library
+    name: world-of-exoplanets
     env: python
     plan: free
     region: oregon
