@@ -2,12 +2,14 @@ services:
   - type: web
     name: exoplanets-library
     env: python
+    plan: free
+    region: oregon
     buildCommand: "./build.sh"
     startCommand: "gunicorn Exoplanets_project.wsgi:application"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: Exoplanetsdb  # Здесь вы даете имя САМОЙ БАЗЕ ДАННЫХ в Render
+          name: exoplanetslib
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
@@ -15,10 +17,12 @@ services:
         value: "False"
       - key: ALLOWED_HOSTS
         value: ".onrender.com"
+    healthCheckPath: /
     autoDeploy: true
 
 databases:
-  - name: Exoplanetsdb  # Это имя должно совпадать с тем, что в services.envVars
-    databaseName: Exoplanets  # Фактическое имя БД внутри PostgreSQL (опционально)
-    user: Natalia_Volkova  # Имя пользователя (опционально)
+  - name: exoplanetslib
+    databaseName: exoplanets
+    user: alex
     plan: free
+    region: oregon
